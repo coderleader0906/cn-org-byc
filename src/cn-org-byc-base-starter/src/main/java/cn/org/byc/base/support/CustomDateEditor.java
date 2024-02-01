@@ -19,44 +19,35 @@ package cn.org.byc.base.support;
 import cn.org.byc.base.util.DateUtils;
 
 import java.beans.PropertyEditorSupport;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 日期类型属性编辑器
+ * @author ken
+ * @see java.beans.PropertyEditorSupport
+ * @see CustomBeanWrapper
+ */
 public class CustomDateEditor extends PropertyEditorSupport {
 
-    /**
-     * Gets the property value as a string suitable for presentation
-     * to a human to edit.
-     *
-     * @return The property value as a string suitable for presentation
-     * to a human to edit.
-     * <p>   Returns null if the value can't be expressed as a string.
-     * <p>   If a non-null value is returned, then the PropertyEditor should
-     * be prepared to parse that string back in setAsText().
-     */
     @Override
     public String getAsText() {
-        Date date = (Date) getValue();
-        if (date == null){
-            return "";
+        Object value = getValue();
+        if (value instanceof Date date) {
+            Long time = DateUtils.formatDateTime(date);
+            return time == null ? "" : time.toString();
+        } else {
+            return super.getAsText();
         }
-
-        return DateUtils.formatDateTime(date);
     }
 
-    /**
-     * Sets the property value by parsing a given String.  May raise
-     * java.lang.IllegalArgumentException if either the String is
-     * badly formatted or if this kind of property can't be expressed
-     * as text.
-     *
-     * @param text The string to be parsed.
-     */
     @Override
     public void setAsText(String text) throws IllegalArgumentException {
         if (text == null || text.trim().length() == 0){
             setValue(null);
+            return;
         }
-
         setValue(DateUtils.parse(text));
     }
 }

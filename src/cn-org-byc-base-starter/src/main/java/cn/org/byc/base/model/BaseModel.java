@@ -20,10 +20,12 @@ import cn.org.byc.base.support.CustomBeanWrapper;
 import cn.org.byc.base.util.DateUtils;
 
 import java.beans.PropertyDescriptor;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
 public abstract class BaseModel implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Override

@@ -38,19 +38,21 @@ public class CustomBeanWrapper extends BeanWrapperImpl {
 
     public CustomBeanWrapper(Object object) {
         super(object);
+        // 注册自定义的属性编辑器，用于处理Date类型和字符串数组类型的属性。
         registerCustomEditor(Date.class, new CustomDateEditor());
         registerCustomEditor(Array.newInstance(String.class,0).getClass(),new CustomStringArrayEditor());
     }
 
     public CustomBeanWrapper(Class<?> clazz) {
         super(clazz);
+        // 注册自定义的属性编辑器，用于处理Date类型和字符串数组类型的属性。
         registerCustomEditor(Date.class, new CustomDateEditor());
         registerCustomEditor(Array.newInstance(String.class,0).getClass(),new CustomStringArrayEditor());
     }
 
     /**
      * 根据声明顺序获取属性描述符
-     * @return 属性描述符数组 PropertyDescriptor[]
+     * @return PropertyDescriptor[] 属性描述符数组
      */
     public PropertyDescriptor[] getPropertyDescriptorsInDeclaringOrder() {
         // 获取父类属性描述符
@@ -59,6 +61,7 @@ public class CustomBeanWrapper extends BeanWrapperImpl {
         List<Method> methodsInDeclaringOrder = ReflectionUtils.getMethodsInDeclaringOrder(getWrappedClass());
         Set<PropertyDescriptor> resultPropertyDescriptors = new LinkedHashSet<>();
 
+        // 循环遍历方法，将相关的属性描述符添加到结果集合中
         for (Method method : methodsInDeclaringOrder) {
             for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
                 if (method.equals(propertyDescriptor.getReadMethod()) || method.equals(propertyDescriptor.getWriteMethod())){
@@ -71,8 +74,15 @@ public class CustomBeanWrapper extends BeanWrapperImpl {
         return resultPropertyDescriptors.toArray(new PropertyDescriptor[resultPropertyDescriptors.size()]);
     }
 
+    /**
+     * 复制属性值的方法
+     * @param destinationBean
+     * @param propertyNames
+     */
     public void copyPropertiesTo(Object destinationBean, List<String> propertyNames){
+        // 创建目标对象的CustomBeanWrapper实例
         CustomBeanWrapper destinationBeanWrapper = new CustomBeanWrapper(destinationBean);
+        // 循环遍历属性名称列表，将每个属性的值从当前对象复制到目标对象
         for (String propertyName : propertyNames) {
             destinationBeanWrapper.setPropertyValue(propertyName, getPropertyValue(propertyName));
         }

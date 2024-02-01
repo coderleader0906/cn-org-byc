@@ -46,6 +46,7 @@
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <commons-logging.version>1.0.4</commons-logging.version>
         <commons-io.version>2.15.1</commons-io.version>
+        <commons-lang3.version>3.14.0</commons-lang3.version>
         <jakarta.transaction-api.version>2.0.1</jakarta.transaction-api.version>
         <mysql-connector-j.version>8.3.0</mysql-connector-j.version>
         <org.aspectj.version>1.9.21</org.aspectj.version>
@@ -138,6 +139,12 @@
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
             <!-- commons end -->
             <dependency>
                 <groupId>jakarta.transaction</groupId>
