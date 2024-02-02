@@ -23,7 +23,7 @@
         <groupId>cn.org.byc</groupId>
         <artifactId>byc-dependencies</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-    </parent>>
+    </parent>
 
     <artifactId>cn-org-byc-base-starter</artifactId>
     <packaging>jar</packaging>
