@@ -52,6 +52,7 @@
         <org.aspectj.version>1.9.21</org.aspectj.version>
         <slf4j-api.version>2.0.11</slf4j-api.version>
         <logback.version>1.4.14</logback.version>
+        <jackson.version>2.16.1</jackson.version>
 
         <!-- Compiler settings properties -->
         <maven.compiler.source>17</maven.compiler.source>
@@ -118,6 +119,12 @@
                 <artifactId>xml-apis</artifactId>
                 <version>${xml-apis.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
             <!-- commons -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -144,8 +151,8 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
             </dependency>
-
             <!-- commons end -->
+
             <dependency>
                 <groupId>jakarta.transaction</groupId>
                 <artifactId>jakarta.transaction-api</artifactId>
@@ -156,6 +163,7 @@
                 <artifactId>mysql-connector-j</artifactId>
                 <version>${mysql-connector-j.version}</version>
             </dependency>
+
             <!-- aspectj -->
             <dependency>
                 <groupId>org.aspectj</groupId>
